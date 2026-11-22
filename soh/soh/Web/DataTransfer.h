@@ -12,6 +12,9 @@ void ExportData();
 // then the page reloads so the game picks them up.
 void ImportData();
 
+// Lets the player pick a ZIP containing .otr/.o2r asset archives and installs it under the mods directory.
+void ImportModZip();
+
 } // namespace ShipWeb
 
 #endif
