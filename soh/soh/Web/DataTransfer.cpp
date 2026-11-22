@@ -78,7 +78,7 @@ EM_JS(void, shipweb_pick_import_file, (const char* path), {
 });
 
 static bool IsSafeEntryName(const std::string& name) {
-    if (name.empty() || name[0] == '/' || name[0] == '\\' || name.find('\\\\') != std::string::npos || name.find(':') != std::string::npos) {
+    if (name.empty() || name[0] == '/' || name[0] == '\\' || name.find('\\') != std::string::npos || name.find(':') != std::string::npos) {
         return false;
     }
     for (const auto& part : fs::path(name)) {
@@ -238,7 +238,7 @@ extern "C" EMSCRIPTEN_KEEPALIVE int ShipWeb_ImportModZip() {
     zip_discard(zip);
     if (files.empty() || !hasAssetArchive) return -1;
 
-    const fs::path modsDir = Ship::Context::GetAppDirectoryPath() / "mods";
+    const fs::path modsDir = fs::path(Ship::Context::GetAppDirectoryPath()) / "mods";
     const auto stamp = std::chrono::duration_cast<std::chrono::milliseconds>(
         std::chrono::system_clock::now().time_since_epoch()).count();
     const fs::path stagingDir = modsDir / (".import-" + std::to_string(stamp));
