@@ -7,6 +7,7 @@
 #include <filesystem>
 #include <fstream>
 #include <string>
+#include <stdexcept>
 #include <vector>
 
 #include <emscripten.h>
@@ -14,6 +15,7 @@
 #include <zip.h>
 
 #include <ship/Context.h>
+#include <ship/utils/StringHelper.h>
 #include "soh/Notification/Notification.h"
 
 namespace fs = std::filesystem;
