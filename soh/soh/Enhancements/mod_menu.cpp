@@ -8,6 +8,9 @@
 #include <ship/Context.h>
 
 #include "mod_menu.h"
+#ifdef __EMSCRIPTEN__
+#include "soh/Web/DataTransfer.h"
+#endif
 #include "soh/Enhancements/audio/OotrsArchive.h"
 #include "soh/OTRGlobals.h"
 #include "soh/util.h"
@@ -470,6 +473,13 @@ void DrawCustomMusicSummary() {
 
 void ModMenuWindow::DrawElement() {
     SohGui::mSohMenu->MenuDrawItem(enableModsWidget, THEME_COLOR);
+#ifdef __EMSCRIPTEN__
+    if (ImGui::Button("Import Mod ZIP")) {
+        ShipWeb::ImportModZip();
+    }
+    ImGui::SameLine();
+    ImGui::TextDisabled(" .otr / .o2r asset mods");
+#endif
     ImGui::SameLine();
     SohGui::mSohMenu->MenuDrawItem(tabHotkeyWidget, THEME_COLOR);
 
