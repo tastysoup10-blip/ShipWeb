@@ -78,7 +78,7 @@ EM_JS(void, shipweb_pick_import_file, (const char* path), {
 });
 
 static bool IsSafeEntryName(const std::string& name) {
-    if (name.empty() || name[0] == '/' || name[0] == '\\' || name.find(':') != std::string::npos) {
+    if (name.empty() || name[0] == '/' || name[0] == '\\' || name.find('\\\\') != std::string::npos || name.find(':') != std::string::npos) {
         return false;
     }
     for (const auto& part : fs::path(name)) {
